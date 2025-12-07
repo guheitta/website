@@ -1,0 +1,654 @@
+/* --- IMPORTS & FONTS --- */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap');
+
+/* --- RESET & VARIABLES --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* PALETTE: Forest Green & White */
+    --primary: #133b2f;       /* Deep Forest Green */
+    --primary-dark: #0b241c;  /* Darker Green */
+    --primary-light: #1e5242; /* Lighter Green */
+    
+    --bg-white: #ffffff;
+    --bg-off-white: #f8f9fa;
+    
+    --text-main: #222222;
+    --text-light: #555555;
+    --text-white: #ffffff;
+    --text-grey-light: #cccccc;
+    
+    --border-color: #e5e5e5;
+    
+    --shadow: 0 10px 30px rgba(19, 59, 47, 0.15);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: var(--text-main);
+    background-color: var(--bg-white);
+    overflow-x: hidden;
+    font-weight: 400;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--primary);
+    line-height: 1.2;
+    font-weight: 800; 
+    letter-spacing: -0.5px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.section { padding: 6rem 0; }
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+    text-transform: uppercase;
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    text-align: center;
+    color: var(--text-light);
+    margin-bottom: 4rem;
+    font-weight: 500;
+}
+
+/* --- BUTTONS --- */
+.btn {
+    padding: 1rem 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: #ffffff;
+    border: 1px solid var(--primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
+    transform: translateY(-2px);
+}
+
+/* --- NAVIGATION --- */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid rgba(19, 59, 47, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Increased padding for a larger, premium navbar */
+    padding: 1.5rem 2rem; 
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 3rem; /* Increased gap for better spacing */
+}
+
+/* Standard Menu Links */
+.nav-menu > li > a:not(.nav-phone):not(.nav-email) {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+}
+
+.nav-menu a:hover { opacity: 0.7; }
+
+/* CONTACT BLOCK (Stacked Vertical) */
+.nav-contact-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Right aligned */
+    justify-content: center;
+    line-height: 1.5; /* Good spacing between the two lines */
+    
+    /* Visual Separator */
+    margin-left: 1rem;
+    padding-left: 2.5rem;
+    border-left: 2px solid #e5e5e5;
+}
+
+/* Unified style for both Phone and Email */
+.nav-phone, 
+.nav-email {
+    text-decoration: none;
+    color: var(--primary);
+    font-weight: 800; /* Bold and strict */
+    font-size: 0.95rem; /* Same size for both */
+    white-space: nowrap;
+    text-transform: uppercase; /* Optional: remove if you prefer lowercase email */
+    letter-spacing: 0.5px;
+}
+
+.nav-email:hover, 
+.nav-phone:hover {
+    color: var(--primary-light);
+}
+
+/* Mobile Toggle */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    gap: 6px;
+}
+
+.nav-toggle span {
+    width: 30px;
+    height: 3px;
+    background-color: var(--primary);
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+    .navbar .container { padding: 1rem 1.5rem; } /* Smaller nav on tablets */
+    .nav-menu { gap: 1.5rem; }
+    .nav-contact-block { padding-left: 1.5rem; }
+}
+
+@media (max-width: 900px) {
+    .nav-toggle { display: flex; }
+    
+    .nav-menu {
+        position: absolute; 
+        top: 100%; 
+        left: 0; 
+        width: 100%;
+        background: white; 
+        flex-direction: column; 
+        padding: 2rem;
+        display: none; 
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        gap: 2rem; 
+        align-items: center;
+    }
+    
+    .nav-menu.active { display: flex; }
+    
+    /* Reset Contact Block for Mobile */
+    .nav-contact-block {
+        align-items: center;
+        border-left: none;
+        padding-left: 0;
+        margin-left: 0;
+        margin-top: 1rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #eee;
+        width: 100%;
+    }
+    
+    .nav-phone, .nav-email { font-size: 1.1rem; margin-bottom: 0.5rem; }
+}
+
+/* --- HERO SECTION --- */
+.hero {
+    background: linear-gradient(rgba(19, 59, 47, 0.75), rgba(19, 59, 47, 0.6)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 12rem 0 10rem;
+    text-align: center;
+}
+
+.hero-title {
+    font-size: 4rem;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+/* =========================================
+   1. OUR SERVICES (FIXED)
+   ========================================= */
+.services-section { 
+    background-color: var(--bg-white); 
+}
+
+.services-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+/* --- Base Card (Odd Numbers: 1, 3, 5) --- */
+/* Layout: Text (Left, Wide) | Image (Right, Narrow) */
+.service-card-complex {
+    display: grid;
+    /* 65% for Text, 35% for Image */
+    grid-template-columns: 65% 35%; 
+    background-color: var(--primary); 
+    color: white;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    min-height: 500px; 
+}
+
+/* --- Alternating Card (Even Numbers: 2, 4, 6) --- */
+/* FIX: We must swap the grid columns so the text (now on the right) gets the wide column */
+.service-card-complex:nth-child(even) {
+    /* 35% for Image (Left), 65% for Text (Right) */
+    grid-template-columns: 35% 65%;
+}
+
+/* Visually move the image to the left for even cards */
+.service-card-complex:nth-child(even) .service-img-side {
+    order: -1;
+}
+
+/* Text Side Styling */
+.service-text-side {
+    padding: 4rem 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Decoration Line */
+.service-line {
+    width: 60px;
+    height: 3px;
+    background-color: white;
+    margin-bottom: 2rem;
+}
+
+/* Title */
+.service-text-side h3 {
+    color: white;
+    /* Responsive font size ensures single line */
+    font-size: clamp(1.8rem, 2.5vw, 2.5rem); 
+    margin-bottom: 1.5rem;
+    text-transform: none; 
+    font-weight: 700;
+    line-height: 1.1;
+    white-space: nowrap; 
+}
+
+/* Description */
+.service-desc {
+    color: var(--text-grey-light);
+    margin-bottom: 3rem;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    max-width: 90%;
+}
+
+/* Inner Box (Dark Green Background with White Border) */
+.service-list-block {
+    background-color: rgba(0, 0, 0, 0.2); 
+    padding: 2.5rem; 
+    border-left: 4px solid white; /* The white border from your reference */
+}
+
+.list-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+.list-item:last-child {
+    margin-bottom: 0;
+}
+
+.arrow {
+    margin-right: 20px;
+    font-size: 1.2rem;
+    color: white;
+    line-height: 1.3;
+}
+
+/* Image Side */
+.service-img-side {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* =========================================
+   END SERVICES
+   ========================================= */
+
+/* --- 2. OUR WORKS --- */
+.works-section { background-color: var(--bg-off-white); }
+.project-item {
+    margin-bottom: 6rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid var(--border-color);
+}
+.project-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.project-header {
+    display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;
+}
+.project-info h3 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+.project-info p { color: var(--text-light); max-width: 600px; }
+.project-gallery {
+    display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: repeat(2, 250px); gap: 1rem;
+}
+.gallery-img-main { grid-column: 1 / 2; grid-row: 1 / 3; width: 100%; height: 100%; object-fit: cover; }
+.gallery-img-small { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- 3. OUR CLIENTS --- */
+.clients-section { background-color: white; text-align: center; }
+.clients-container {
+    width: 100%; height: 400px; 
+    border: 1px solid var(--border-color);
+    position: relative; overflow: hidden;
+}
+.clients-placeholder {
+    width: 100%; height: 100%;
+    background: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80') center/cover;
+    opacity: 0.8; 
+}
+.clients-overlay-text {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.95); padding: 1.5rem 3rem;
+    font-weight: 700; color: var(--primary); text-transform: uppercase; border: 1px solid var(--primary);
+}
+
+/* --- 4. NUMBERS --- */
+.stats-section { background-color: var(--primary); color: white; padding: 5rem 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
+.stat-number { font-size: 3.5rem; font-weight: 800; margin-bottom: 0.5rem; color: white; }
+.stat-label { font-size: 0.9rem; text-transform: uppercase; opacity: 0.8; letter-spacing: 1px; }
+
+/* --- 5. CONTACT (Updated for Split Forms) --- */
+.contact-section { background-color: var(--bg-off-white); }
+
+.contact-wrapper {
+    display: grid; 
+    grid-template-columns: 1fr 1.5fr; /* Info Left, Forms Right */
+    gap: 4rem;
+    background: white; 
+    padding: 4rem; 
+    border: 1px solid var(--border-color);
+}
+
+/* Left Side Styling */
+.contact-info h3 { font-size: 1.5rem; margin-bottom: 2rem; color: var(--primary); }
+.contact-detail { margin-bottom: 2.5rem; }
+.contact-detail h4 { font-size: 0.85rem; color: var(--primary); margin-bottom: 0.5rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
+.contact-detail p, .contact-detail a { color: var(--text-main); font-weight: 500; text-decoration: none; font-size: 1.1rem; }
+.contact-detail a:hover { color: var(--primary-light); }
+
+/* Right Side Container */
+.forms-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Common Form Styles */
+.contact-form {
+    background: #fdfdfd;
+    padding: 0; /* Removing internal padding to fit grid cleanly, managed by wrapper */
+}
+
+.form-heading {
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 0.2rem;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.form-subtext {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+/* Horizontal Row for small inputs */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group { margin-bottom: 1rem; }
+
+.form-group input, .form-group textarea {
+    width: 100%; 
+    padding: 1rem; 
+    border: 1px solid #ddd;
+    background: white; 
+    font-family: 'Montserrat', sans-serif; 
+    color: var(--primary);
+    font-size: 0.95rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus, .form-group textarea:focus { 
+    outline: none; 
+    border-color: var(--primary); 
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(19, 59, 47, 0.05);
+}
+
+/* Visual Divider "OR" */
+.form-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #ccc;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0.5rem 0;
+}
+
+.form-divider::before, .form-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #eee;
+}
+
+.form-divider span {
+    padding: 0 1rem;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .contact-wrapper { grid-template-columns: 1fr; padding: 2rem; }
+    .form-row { grid-template-columns: 1fr; } /* Stack inputs on mobile */
+    .contact-info { padding-bottom: 2rem; border-bottom: 1px solid #eee; margin-bottom: 2rem; }
+}
+
+/* --- FOOTER --- */
+.footer { background-color: var(--primary-dark); color: #888; padding: 4rem 0 2rem; }
+.footer h4 { color: white; margin-bottom: 1rem; font-size: 1.1rem; }
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 0.5rem; }
+.footer a { color: #888; text-decoration: none; }
+.footer a:hover { color: white; }
+.footer-bottom { 
+    border-top: 1px solid rgba(255,255,255,0.05); margin-top: 3rem; padding-top: 2rem; 
+    text-align: center; font-size: 0.85rem; 
+}
+
+/* --- ANIMATION --- */
+.scroll-reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
+.scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+    /* Tablet adjustment */
+    .service-card-complex { grid-template-columns: 50% 50%; }
+    .service-card-complex:nth-child(even) { grid-template-columns: 50% 50%; }
+    .service-text-side h3 { font-size: 2rem; white-space: normal; } /* Allow wrap if screen is too small */
+}
+
+@media (max-width: 900px) {
+    .service-card-complex { grid-template-columns: 1fr; min-height: auto; } /* Stack on mobile */
+    .service-card-complex:nth-child(even) { grid-template-columns: 1fr; }
+    
+    .service-text-side { padding: 3rem 2rem; }
+    
+    /* Image always on top for mobile */
+    .service-img-side { order: -1; height: 300px; min-height: 300px; } 
+    .service-card-complex:nth-child(even) .service-img-side { order: -1; }
+    
+    .project-gallery { grid-template-columns: 1fr; grid-template-rows: 250px 200px 200px; }
+    .gallery-img-main { grid-column: span 1; grid-row: span 1; }
+    
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .contact-wrapper { grid-template-columns: 1fr; padding: 2rem; }
+    .hero-title { font-size: 2.5rem; }
+    
+    .nav-toggle { display: flex; }
+    .nav-menu {
+        position: absolute; top: 100%; left: 0; width: 100%;
+        background: white; flex-direction: column; padding: 2rem;
+        display: none; box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+    }
+    .nav-menu.active { display: flex; }
+}
+
+/* --- NEW ADDITIONS FOR INNER PAGES --- */
+
+/* Product Catalog Grid */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: white;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.product-image {
+    height: 250px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.product-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary);
+}
+
+.product-content p {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+}
+
+.product-link {
+    margin-top: auto;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.product-link:hover { color: var(--primary-light); }
+
+/* About Page Text Block */
+.text-block {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--text-main);
+}
+.text-block p { margin-bottom: 1.5rem; }
+
+/* Map Placeholder */
+.map-container {
+    width: 100%;
+    height: 450px;
+    background-color: #eee;
+    margin-bottom: -6rem; /* Pull footer up slightly */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    font-weight: 600;
+}
