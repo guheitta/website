@@ -30,7 +30,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -42,7 +42,7 @@ body {
     font-weight: 400;
 }
 
-/* Typography */
+/* Typography Defaults */
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
     color: var(--primary);
@@ -68,7 +68,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-align: center;
     color: var(--text-light);
     margin-bottom: 4rem;
@@ -102,26 +102,27 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-2px);
 }
 
-/* --- NAVIGATION --- */
+/* --- NAVIGATION (DESKTOP) --- */
 .navbar {
     background-color: rgba(255, 255, 255, 0.98);
     border-bottom: 1px solid rgba(19, 59, 47, 0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: var(--transition);
+    height: 90px; /* Fixed height for calculations */
+    display: flex;
+    align-items: center;
 }
 
 .navbar .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* Increased padding for a larger, premium navbar */
-    padding: 1.5rem 2rem; 
+    width: 100%;
 }
 
 .nav-brand {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: 800;
     color: var(--primary);
     text-transform: uppercase;
@@ -134,54 +135,43 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     list-style: none;
-    gap: 3rem; /* Increased gap for better spacing */
+    gap: 2.5rem;
 }
 
-/* Standard Menu Links */
+/* Links */
 .nav-menu > li > a:not(.nav-phone):not(.nav-email) {
     text-decoration: none;
     color: var(--primary);
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: var(--transition);
 }
+.nav-menu a:hover { opacity: 0.6; }
 
-.nav-menu a:hover { opacity: 0.7; }
-
-/* CONTACT BLOCK (Stacked Vertical) */
+/* Contact Block in Nav */
 .nav-contact-block {
     display: flex;
     flex-direction: column;
-    align-items: flex-end; /* Right aligned */
+    align-items: flex-end;
     justify-content: center;
-    line-height: 1.5; /* Good spacing between the two lines */
-    
-    /* Visual Separator */
+    line-height: 1.4;
     margin-left: 1rem;
-    padding-left: 2.5rem;
+    padding-left: 2rem;
     border-left: 2px solid #e5e5e5;
 }
 
-/* Unified style for both Phone and Email */
-.nav-phone, 
-.nav-email {
+.nav-phone, .nav-email {
     text-decoration: none;
     color: var(--primary);
-    font-weight: 800; /* Bold and strict */
-    font-size: 0.95rem; /* Same size for both */
+    font-weight: 800;
+    font-size: 0.9rem;
     white-space: nowrap;
-    text-transform: uppercase; /* Optional: remove if you prefer lowercase email */
-    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
-.nav-email:hover, 
-.nav-phone:hover {
-    color: var(--primary-light);
-}
-
-/* Mobile Toggle */
+/* Mobile Toggle (Hidden on Desktop) */
 .nav-toggle {
     display: none;
     flex-direction: column;
@@ -189,69 +179,33 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
     cursor: pointer;
     gap: 6px;
+    padding: 10px;
+    z-index: 1001;
 }
 
 .nav-toggle span {
     width: 30px;
     height: 3px;
     background-color: var(--primary);
-}
-
-/* RESPONSIVE */
-@media (max-width: 1100px) {
-    .navbar .container { padding: 1rem 1.5rem; } /* Smaller nav on tablets */
-    .nav-menu { gap: 1.5rem; }
-    .nav-contact-block { padding-left: 1.5rem; }
-}
-
-@media (max-width: 900px) {
-    .nav-toggle { display: flex; }
-    
-    .nav-menu {
-        position: absolute; 
-        top: 100%; 
-        left: 0; 
-        width: 100%;
-        background: white; 
-        flex-direction: column; 
-        padding: 2rem;
-        display: none; 
-        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-        gap: 2rem; 
-        align-items: center;
-    }
-    
-    .nav-menu.active { display: flex; }
-    
-    /* Reset Contact Block for Mobile */
-    .nav-contact-block {
-        align-items: center;
-        border-left: none;
-        padding-left: 0;
-        margin-left: 0;
-        margin-top: 1rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid #eee;
-        width: 100%;
-    }
-    
-    .nav-phone, .nav-email { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    transition: all 0.3s ease;
 }
 
 /* --- HERO SECTION --- */
 .hero {
-    background: linear-gradient(rgba(19, 59, 47, 0.75), rgba(19, 59, 47, 0.6)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80');
+    background: linear-gradient(rgba(19, 59, 47, 0.75), rgba(19, 59, 47, 0.65)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     color: white;
-    padding: 12rem 0 10rem;
+    padding: 14rem 0 10rem;
     text-align: center;
 }
 
 .hero-title {
-    font-size: 4rem;
+    font-size: 3.5rem;
     color: white;
     margin-bottom: 1.5rem;
+    line-height: 1.1;
 }
 
 .hero-subtitle {
@@ -261,24 +215,13 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 400;
 }
 
-/* =========================================
-   1. OUR SERVICES (FIXED)
-   ========================================= */
-.services-section { 
-    background-color: var(--bg-white); 
-}
+/* --- SERVICES (DESKTOP) --- */
+.services-section { background-color: var(--bg-white); }
+.services-container { display: flex; flex-direction: column; gap: 5rem; }
 
-.services-container {
-    display: flex;
-    flex-direction: column;
-    gap: 5rem;
-}
-
-/* --- Base Card (Odd Numbers: 1, 3, 5) --- */
-/* Layout: Text (Left, Wide) | Image (Right, Narrow) */
+/* 65% Text / 35% Image Split */
 .service-card-complex {
     display: grid;
-    /* 65% for Text, 35% for Image */
     grid-template-columns: 65% 35%; 
     background-color: var(--primary); 
     color: white;
@@ -287,19 +230,10 @@ h1, h2, h3, h4, h5, h6 {
     min-height: 500px; 
 }
 
-/* --- Alternating Card (Even Numbers: 2, 4, 6) --- */
-/* FIX: We must swap the grid columns so the text (now on the right) gets the wide column */
-.service-card-complex:nth-child(even) {
-    /* 35% for Image (Left), 65% for Text (Right) */
-    grid-template-columns: 35% 65%;
-}
+/* Alternating: Swap columns */
+.service-card-complex:nth-child(even) { grid-template-columns: 35% 65%; }
+.service-card-complex:nth-child(even) .service-img-side { order: -1; }
 
-/* Visually move the image to the left for even cards */
-.service-card-complex:nth-child(even) .service-img-side {
-    order: -1;
-}
-
-/* Text Side Styling */
 .service-text-side {
     padding: 4rem 5rem;
     display: flex;
@@ -307,27 +241,19 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
 }
 
-/* Decoration Line */
 .service-line {
-    width: 60px;
-    height: 3px;
-    background-color: white;
-    margin-bottom: 2rem;
+    width: 60px; height: 3px; background-color: white; margin-bottom: 2rem;
 }
 
-/* Title */
 .service-text-side h3 {
     color: white;
-    /* Responsive font size ensures single line */
-    font-size: clamp(1.8rem, 2.5vw, 2.5rem); 
+    font-size: 2.2rem;
     margin-bottom: 1.5rem;
     text-transform: none; 
     font-weight: 700;
     line-height: 1.1;
-    white-space: nowrap; 
 }
 
-/* Description */
 .service-desc {
     color: var(--text-grey-light);
     margin-bottom: 3rem;
@@ -336,67 +262,42 @@ h1, h2, h3, h4, h5, h6 {
     max-width: 90%;
 }
 
-/* Inner Box (Dark Green Background with White Border) */
 .service-list-block {
     background-color: rgba(0, 0, 0, 0.2); 
     padding: 2.5rem; 
-    border-left: 4px solid white; /* The white border from your reference */
+    border-left: 4px solid white; 
 }
 
-.list-item {
-    display: flex;
-    align-items: flex-start;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-    color: #e0e0e0;
-}
+.list-item { display: flex; align-items: flex-start; margin-bottom: 1rem; font-size: 1rem; color: #e0e0e0; }
+.list-item:last-child { margin-bottom: 0; }
+.arrow { margin-right: 20px; font-size: 1.2rem; color: white; }
 
-.list-item:last-child {
-    margin-bottom: 0;
-}
-
-.arrow {
-    margin-right: 20px;
-    font-size: 1.2rem;
-    color: white;
-    line-height: 1.3;
-}
-
-/* Image Side */
 .service-img-side {
-    width: 100%;
-    height: 100%;
-    min-height: 400px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
+    width: 100%; height: 100%; min-height: 400px;
+    background-size: cover; background-position: center;
 }
 
-/* =========================================
-   END SERVICES
-   ========================================= */
-
-/* --- 2. OUR WORKS --- */
+/* --- WORKS & PROJECTS --- */
 .works-section { background-color: var(--bg-off-white); }
-.project-item {
-    margin-bottom: 6rem;
-    padding-bottom: 4rem;
-    border-bottom: 1px solid var(--border-color);
-}
+.project-item { margin-bottom: 6rem; padding-bottom: 4rem; border-bottom: 1px solid var(--border-color); }
 .project-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-.project-header {
-    display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem;
-}
+
+.project-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 2rem; }
 .project-info h3 { font-size: 1.8rem; margin-bottom: 0.5rem; }
 .project-info p { color: var(--text-light); max-width: 600px; }
+
+/* Desktop Gallery: 1 Big Left, 2 Small Right */
 .project-gallery {
-    display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: repeat(2, 250px); gap: 1rem;
+    display: grid; 
+    grid-template-columns: 2fr 1fr; 
+    grid-template-rows: repeat(2, 250px); 
+    gap: 1rem;
 }
 .gallery-img-main { grid-column: 1 / 2; grid-row: 1 / 3; width: 100%; height: 100%; object-fit: cover; }
 .gallery-img-small { width: 100%; height: 100%; object-fit: cover; }
 
-/* --- 3. OUR CLIENTS --- */
-.clients-section { background-color: white; text-align: center; }
+/* --- CLIENTS & STATS --- */
+.clients-section { background-color: white; }
 .clients-container {
     width: 100%; height: 400px; 
     border: 1px solid var(--border-color);
@@ -407,118 +308,34 @@ h1, h2, h3, h4, h5, h6 {
     background: url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80') center/cover;
     opacity: 0.8; 
 }
-.clients-overlay-text {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    background: rgba(255,255,255,0.95); padding: 1.5rem 3rem;
-    font-weight: 700; color: var(--primary); text-transform: uppercase; border: 1px solid var(--primary);
-}
 
-/* --- 4. NUMBERS --- */
 .stats-section { background-color: var(--primary); color: white; padding: 5rem 0; }
 .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; text-align: center; }
 .stat-number { font-size: 3.5rem; font-weight: 800; margin-bottom: 0.5rem; color: white; }
 .stat-label { font-size: 0.9rem; text-transform: uppercase; opacity: 0.8; letter-spacing: 1px; }
 
-/* --- 5. CONTACT (Updated for Split Forms) --- */
+/* --- CONTACT --- */
 .contact-section { background-color: var(--bg-off-white); }
-
 .contact-wrapper {
-    display: grid; 
-    grid-template-columns: 1fr 1.5fr; /* Info Left, Forms Right */
-    gap: 4rem;
-    background: white; 
-    padding: 4rem; 
-    border: 1px solid var(--border-color);
+    display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem;
+    background: white; padding: 4rem; border: 1px solid var(--border-color);
 }
-
-/* Left Side Styling */
-.contact-info h3 { font-size: 1.5rem; margin-bottom: 2rem; color: var(--primary); }
-.contact-detail { margin-bottom: 2.5rem; }
-.contact-detail h4 { font-size: 0.85rem; color: var(--primary); margin-bottom: 0.5rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 1px; }
-.contact-detail p, .contact-detail a { color: var(--text-main); font-weight: 500; text-decoration: none; font-size: 1.1rem; }
+.contact-info h3 { font-size: 1.5rem; margin-bottom: 1.5rem; }
+.contact-detail { margin-bottom: 2rem; }
+.contact-detail h4 { font-size: 0.9rem; color: var(--primary); margin-bottom: 0.5rem; }
+.contact-detail p, .contact-detail a { color: var(--text-light); text-decoration: none; font-size: 1.1rem; }
 .contact-detail a:hover { color: var(--primary-light); }
 
-/* Right Side Container */
-.forms-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-/* Common Form Styles */
-.contact-form {
-    background: #fdfdfd;
-    padding: 0; /* Removing internal padding to fit grid cleanly, managed by wrapper */
-}
-
-.form-heading {
-    font-size: 1.1rem;
-    color: var(--primary);
-    margin-bottom: 0.2rem;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-.form-subtext {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-}
-
-/* Horizontal Row for small inputs */
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-}
-
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .form-group { margin-bottom: 1rem; }
-
 .form-group input, .form-group textarea {
-    width: 100%; 
-    padding: 1rem; 
-    border: 1px solid #ddd;
-    background: white; 
-    font-family: 'Montserrat', sans-serif; 
-    color: var(--primary);
-    font-size: 0.95rem;
-    transition: var(--transition);
+    width: 100%; padding: 1rem; border: 1px solid #ddd;
+    background: #fdfdfd; font-family: 'Montserrat', sans-serif; color: var(--primary); font-size: 1rem;
 }
-
-.form-group input:focus, .form-group textarea:focus { 
-    outline: none; 
-    border-color: var(--primary); 
-    background-color: #fff;
-    box-shadow: 0 0 0 3px rgba(19, 59, 47, 0.05);
-}
-
-/* Visual Divider "OR" */
-.form-divider {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #ccc;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin: 0.5rem 0;
-}
-
-.form-divider::before, .form-divider::after {
-    content: '';
-    flex: 1;
-    border-bottom: 1px solid #eee;
-}
-
-.form-divider span {
-    padding: 0 1rem;
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-    .contact-wrapper { grid-template-columns: 1fr; padding: 2rem; }
-    .form-row { grid-template-columns: 1fr; } /* Stack inputs on mobile */
-    .contact-info { padding-bottom: 2rem; border-bottom: 1px solid #eee; margin-bottom: 2rem; }
-}
+.form-group input:focus { outline: none; border-color: var(--primary); }
+.form-divider { display: flex; align-items: center; text-align: center; color: #ccc; margin: 1rem 0; }
+.form-divider::before, .form-divider::after { content: ''; flex: 1; border-bottom: 1px solid #eee; }
+.form-divider span { padding: 0 1rem; font-size: 0.8rem; }
 
 /* --- FOOTER --- */
 .footer { background-color: var(--primary-dark); color: #888; padding: 4rem 0 2rem; }
@@ -527,128 +344,138 @@ h1, h2, h3, h4, h5, h6 {
 .footer ul li { margin-bottom: 0.5rem; }
 .footer a { color: #888; text-decoration: none; }
 .footer a:hover { color: white; }
-.footer-bottom { 
-    border-top: 1px solid rgba(255,255,255,0.05); margin-top: 3rem; padding-top: 2rem; 
-    text-align: center; font-size: 0.85rem; 
-}
+.footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 3rem; padding-top: 2rem; text-align: center; }
 
-/* --- ANIMATION --- */
+/* --- ANIMATIONS --- */
 .scroll-reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
 .scroll-reveal.revealed { opacity: 1; transform: translateY(0); }
 
-/* --- RESPONSIVE --- */
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVENESS (REWRITE)
+   ========================================================================== */
+
+/* 1. Tablet (1024px and below) */
 @media (max-width: 1024px) {
-    /* Tablet adjustment */
+    .hero-title { font-size: 3rem; }
+    .nav-menu { gap: 1.5rem; }
     .service-card-complex { grid-template-columns: 50% 50%; }
     .service-card-complex:nth-child(even) { grid-template-columns: 50% 50%; }
-    .service-text-side h3 { font-size: 2rem; white-space: normal; } /* Allow wrap if screen is too small */
+    .service-text-side { padding: 3rem; }
 }
 
-@media (max-width: 900px) {
-    .service-card-complex { grid-template-columns: 1fr; min-height: auto; } /* Stack on mobile */
-    .service-card-complex:nth-child(even) { grid-template-columns: 1fr; }
+/* 2. Mobile (768px and below) */
+@media (max-width: 768px) {
     
-    .service-text-side { padding: 3rem 2rem; }
-    
-    /* Image always on top for mobile */
-    .service-img-side { order: -1; height: 300px; min-height: 300px; } 
-    .service-card-complex:nth-child(even) .service-img-side { order: -1; }
-    
-    .project-gallery { grid-template-columns: 1fr; grid-template-rows: 250px 200px 200px; }
-    .gallery-img-main { grid-column: span 1; grid-row: span 1; }
-    
-    .stats-grid { grid-template-columns: 1fr 1fr; gap: 3rem; }
-    .contact-wrapper { grid-template-columns: 1fr; padding: 2rem; }
-    .hero-title { font-size: 2.5rem; }
-    
+    /* Global Container */
+    .container { padding: 0 1.2rem; }
+    .section { padding: 4rem 0; }
+
+    /* Navigation - Drawer Style */
     .nav-toggle { display: flex; }
+    
     .nav-menu {
-        position: absolute; top: 100%; left: 0; width: 100%;
-        background: white; flex-direction: column; padding: 2rem;
-        display: none; box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        position: fixed;
+        top: 90px; /* Below navbar */
+        left: 0;
+        width: 100%;
+        height: auto;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0 3rem;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        transform: translateY(-150%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 999;
     }
-    .nav-menu.active { display: flex; }
-}
+    
+    .nav-menu.active {
+        transform: translateY(0);
+    }
 
-/* --- NEW ADDITIONS FOR INNER PAGES --- */
+    .nav-menu > li { width: 100%; text-align: center; margin-bottom: 1rem; }
+    .nav-menu > li > a { font-size: 1.1rem; display: block; padding: 0.5rem; }
 
-/* Product Catalog Grid */
-.catalog-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
-}
+    /* Nav Contact Block on Mobile */
+    .nav-contact-block {
+        border-left: none;
+        margin-left: 0;
+        padding-left: 0;
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #eee;
+        align-items: center;
+        width: 80%;
+    }
+    .nav-phone, .nav-email { font-size: 1.1rem; margin-bottom: 0.5rem; }
 
-.product-card {
-    background: white;
-    border: 1px solid var(--border-color);
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-}
+    /* Hero */
+    .hero { padding: 8rem 0 6rem; }
+    .hero-title { font-size: 2.2rem; }
+    .hero-subtitle { font-size: 1rem; }
 
-.product-card:hover {
-    border-color: var(--primary);
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
-}
+    /* Services - Stacked */
+    .services-container { gap: 3rem; }
+    
+    .service-card-complex, 
+    .service-card-complex:nth-child(even) {
+        grid-template-columns: 1fr; /* Stack vertically */
+        display: flex;
+        flex-direction: column;
+        min-height: auto;
+    }
 
-.product-image {
-    height: 250px;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-}
+    .service-img-side {
+        height: 250px;
+        min-height: 250px;
+        order: -1; /* Image always on top */
+        width: 100%;
+    }
 
-.product-content {
-    padding: 2rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-}
+    .service-text-side {
+        padding: 2rem 1.5rem;
+    }
 
-.product-content h3 {
-    font-size: 1.3rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary);
-}
+    .service-text-side h3 { font-size: 1.6rem; white-space: normal; }
+    .service-desc { font-size: 0.95rem; }
+    .service-list-block { padding: 1.5rem; }
 
-.product-content p {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-}
+    /* Works / Projects */
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+    
+    .project-info h3 { font-size: 1.5rem; }
+    .project-item { margin-bottom: 4rem; padding-bottom: 2rem; }
 
-.product-link {
-    margin-top: auto;
-    font-weight: 700;
-    color: var(--primary);
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    letter-spacing: 0.5px;
-}
+    .project-gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: 250px 200px 200px;
+        gap: 0.8rem;
+    }
+    .gallery-img-main { grid-column: span 1; grid-row: span 1; }
 
-.product-link:hover { color: var(--primary-light); }
+    /* Stats */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr; /* 2x2 Grid */
+        gap: 2rem;
+    }
+    .stat-number { font-size: 2.5rem; }
 
-/* About Page Text Block */
-.text-block {
-    max-width: 800px;
-    margin: 0 auto;
-    font-size: 1.1rem;
-    color: var(--text-main);
-}
-.text-block p { margin-bottom: 1.5rem; }
+    /* Contact */
+    .contact-wrapper {
+        grid-template-columns: 1fr; /* Stack info and form */
+        padding: 2rem 1.5rem;
+        gap: 3rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr; /* Stack inputs */
+    }
 
-/* Map Placeholder */
-.map-container {
-    width: 100%;
-    height: 450px;
-    background-color: #eee;
-    margin-bottom: -6rem; /* Pull footer up slightly */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #888;
-    font-weight: 600;
+    /* Footer */
+    .footer { text-align: center; }
 }
