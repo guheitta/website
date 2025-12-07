@@ -369,6 +369,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Combined Breakpoint for Tablets and Phones (1024px) */
 @media (max-width: 1024px) {
+
+    .nav-contact-block {
+        display: none;
+    }
     
     /* 1. Global Layout Adjustments */
     .hero-title { font-size: 2.8rem; }
